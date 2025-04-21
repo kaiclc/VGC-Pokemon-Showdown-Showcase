@@ -1,0 +1,3 @@
+/Users/pingtram/CLionProjects/VGC-Pokemon-Showdown-Showcase/cmake-build-debug/CMakeFiles/VGC_Pokemon_Showdown_Showcase.dir
+/Users/pingtram/CLionProjects/VGC-Pokemon-Showdown-Showcase/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/pingtram/CLionProjects/VGC-Pokemon-Showdown-Showcase/cmake-build-debug/CMakeFiles/rebuild_cache.dir
