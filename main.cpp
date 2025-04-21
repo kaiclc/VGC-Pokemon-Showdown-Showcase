@@ -1,3 +1,4 @@
+#include "PokemonSegTree.hpp"
 #include <iostream>
 
 int main() {
