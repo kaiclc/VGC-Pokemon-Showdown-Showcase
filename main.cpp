@@ -63,6 +63,20 @@ void parseAllFiles(vector<int> &totalBattlesByMonth, vector<unordered_map<string
     cout << "done!" << endl;
 };
 
+unordered_map<string_view, vector<int>> unionFrqMap(vector<unordered_map<string_view, int>>& freqMapByMonth) {
+    unordered_map<string_view, vector<int>> result;
+    for(int month = 0; month < freqMapByMonth.size(); ++month) {
+        auto& freqMap = freqMapByMonth[month];
+        for (auto it = freqMap.begin(); it != freqMap.end(); ++it) {
+            if (result.find(it->first) == result.end()) {
+                result[it->first] = vector<int>(freqMapByMonth.size(), 0);
+            }
+            result[it->first][it->second] = it->second;
+        }
+    }
+    return result;
+};
+
 int main() {
 
     //string fileFormat = year[0] + "/" + year[0] + "-" + month[10] + ".json";
@@ -73,6 +87,7 @@ int main() {
     //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
 
     parseAllFiles(totalBattlesByMonth, freqMapByMonth);
+    unordered_map<string_view, vector<int>> realCounts = unionFrqMap(freqMapByMonth);
     
     cout << "Welcome to the VGC Pokemon Showdown Showcase!" << endl;
     cout << "The Purpose of the program is to demonstrate the Pokemon Usage in VGC competitive throughout Pokemon Showdown's history" << endl;
