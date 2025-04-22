@@ -43,7 +43,7 @@ unordered_map<string, int> pokemonRawCount(string jsonFilePath) {
     return result;
 };
 void parseAllFiles(vector<int>& totalBattlesByMonth, vector<unordered_map<string, int>>& freqMapByMonth) {
-    vector<string> year = { "2014", "2015", "2016", "2017", "2019", "2020", "2021", "2022", "2023", "2024", "2025" };
+    vector<string> year = { "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" };
     vector<string> month = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
     cout << "parsing data..." << endl;
     totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-11.json"));
