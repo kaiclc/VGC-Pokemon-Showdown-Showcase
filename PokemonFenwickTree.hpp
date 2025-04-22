@@ -10,8 +10,8 @@ using namespace simdjson;
 
 class PokemonFenwickTree {
 	FenwickTree totalBattlesTree;
-	unordered_map<string_view, FenwickTree> pokemonTrees;
+	unordered_map<string, FenwickTree> pokemonTrees;
 public:
-	PokemonFenwickTree(const vector<int>& battles, const unordered_map<string_view, vector<int>>& realCounts);
-	tuple<int, int> getUsage(const string_view& pokemonName, int startIndex, int endIndex);
+	PokemonFenwickTree(const vector<int>& battles, const unordered_map<string, vector<int>>& realCounts);
+	tuple<int, int> getUsage(const string& pokemonName, int startIndex, int endIndex);
 };
