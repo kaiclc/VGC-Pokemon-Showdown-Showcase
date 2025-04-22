@@ -39,18 +39,10 @@ unordered_map<string_view, int> pokemonRawCount(string jsonFilePath) {
 
     return result;
 };
-
-int main() {
+void parseAllFiles(vector<int> &totalBattlesByMonth, vector<unordered_map<string_view, int>> freqMapByMonth) {
     vector<string> year = {"2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"};
     vector<string> month = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    //string fileFormat = year[0] + "/" + year[0] + "-" + month[10] + ".json";
-    //cout << fileFormat << "\n";
-    
-    vector<int> totalBattlesByMonth;
-    vector<unordered_map<string_view, int>> freqMapByMonth;
-    //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
-
-    cout << "parsing data..." << endl; 
+    cout << "parsing data..." << endl;
     totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-11.json"));
     freqMapByMonth.push_back(pokemonRawCount("2014/2014-11.json"));
     totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-12.json"));
@@ -68,7 +60,19 @@ int main() {
     freqMapByMonth.push_back(pokemonRawCount("2025/2025-02.json"));
     totalBattlesByMonth.push_back(loadBattleTotal("2025/2025-03.json"));
     freqMapByMonth.push_back(pokemonRawCount("2025/2025-03.json"));
-    cout << "done parsing!" << endl;
+    cout << "done!" << endl;
+};
+
+int main() {
+
+    //string fileFormat = year[0] + "/" + year[0] + "-" + month[10] + ".json";
+    //cout << fileFormat << "\n";
     
+    vector<int> totalBattlesByMonth;
+    vector<unordered_map<string_view, int>> freqMapByMonth;
+    //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
+
+    parseAllFiles(totalBattlesByMonth, freqMapByMonth);
+
     return 0;
 }
