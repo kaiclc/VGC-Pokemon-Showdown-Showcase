@@ -21,8 +21,8 @@ int loadBattleTotal(string jsonFilePath) {
     return result;
 };
 
-unordered_map<string_view, int> pokemonRawCount(string jsonFilePath) {
-    unordered_map<string_view, int> result;
+unordered_map<string, int> pokemonRawCount(string jsonFilePath) {
+    unordered_map<string, int> result;
     ondemand::parser parser;
 
     auto json = padded_string::load(jsonFilePath);
@@ -31,15 +31,17 @@ unordered_map<string_view, int> pokemonRawCount(string jsonFilePath) {
     auto data = root["data"].get_object();
 
     for (simdjson::ondemand::field entry : data) {
-        string_view pokemon_name = entry.unescaped_key(); // POKEMON NAME
-        auto pokemonInfo = entry.value().get_object();
-        int raw_count = pokemonInfo["Raw count"].get_uint64();
-        result[pokemon_name] = raw_count;
+        std::string pokemon_name(entry.unescaped_key().value()); // POKEMON NAME
+        //cout << pokemon_name << endl;
+        simdjson::ondemand::object pokemonInfo = entry.value().get_object();
+        auto count_result = pokemonInfo["Raw count"].get_uint64();
+        auto temp = count_result.value();
+        //cout << temp << endl;
+        result[pokemon_name] = static_cast<int>(temp);
     }
-
     return result;
 };
-void parseAllFiles(vector<int> &totalBattlesByMonth, vector<unordered_map<string_view, int>> freqMapByMonth) {
+void parseAllFiles(vector<int> &totalBattlesByMonth, vector<unordered_map<string, int>>& freqMapByMonth) {
     vector<string> year = {"2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"};
     vector<string> month = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
     cout << "parsing data..." << endl;
@@ -81,18 +83,23 @@ int main() {
 
     //string fileFormat = year[0] + "/" + year[0] + "-" + month[10] + ".json";
     //cout << fileFormat << "\n";
-    
+
     vector<int> totalBattlesByMonth;
-    vector<unordered_map<string_view, int>> freqMapByMonth;
-    //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
+    vector<unordered_map<string, int>> freqMapByMonth;
+    //unordered_map<string, int> freqMap = pokemonRawCount("2014/2014-11.json");
+    //cout << freqMap["Garchomp"] << endl;
+
 
     parseAllFiles(totalBattlesByMonth, freqMapByMonth);
-    unordered_map<string_view, vector<int>> realCounts = unionFrqMap(freqMapByMonth);
-    
+
+    const unordered_map<string, vector<int>> realCounts = unionFrqMap(freqMapByMonth);
+
+
     cout << "Welcome to the VGC Pokemon Showdown Showcase!" << endl;
     cout << "The Purpose of the program is to demonstrate the Pokemon Usage in VGC competitive throughout Pokemon Showdown's history" << endl;
     cout << "Select a Pokemon and the time range" << endl;
     while(true) {
+
         break;
     }
     return 0;
