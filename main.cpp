@@ -73,6 +73,12 @@ int main() {
     //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
 
     parseAllFiles(totalBattlesByMonth, freqMapByMonth);
-
+    
+    cout << "Welcome to the VGC Pokemon Showdown Showcase!" << endl;
+    cout << "The Purpose of the program is to demonstrate the Pokemon Usage in VGC competitive throughout Pokemon Showdown's history" << endl;
+    cout << "Select a Pokemon and the time range" << endl;
+    while(true) {
+        break;
+    }
     return 0;
 }
