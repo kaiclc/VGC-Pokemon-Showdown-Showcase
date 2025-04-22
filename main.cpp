@@ -65,19 +65,20 @@ void parseAllFiles(vector<int> &totalBattlesByMonth, vector<unordered_map<string
     cout << "done!" << endl;
 };
 
-unordered_map<string_view, vector<int>> unionFrqMap(vector<unordered_map<string_view, int>>& freqMapByMonth) {
-    unordered_map<string_view, vector<int>> result;
+unordered_map<string, vector<int>> unionFrqMap(vector<unordered_map<string, int>>& freqMapByMonth) {
+    unordered_map<string, vector<int>> result;
     for(int month = 0; month < freqMapByMonth.size(); ++month) {
         auto& freqMap = freqMapByMonth[month];
         for (auto it = freqMap.begin(); it != freqMap.end(); ++it) {
             if (result.find(it->first) == result.end()) {
                 result[it->first] = vector<int>(freqMapByMonth.size(), 0);
             }
-            result[it->first][it->second] = it->second;
+            result[it->first][month] = it->second;
         }
     }
     return result;
 };
+
 
 int main() {
 
