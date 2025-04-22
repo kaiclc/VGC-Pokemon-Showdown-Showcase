@@ -41,11 +41,32 @@ unordered_map<string_view, int> pokemonRawCount(string jsonFilePath) {
 };
 
 int main() {
-
     vector<string> year = {"2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"};
     vector<string> month = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    //string fileFormat = year[0] + "/" + year[0] + "-" + month[0] + ".json";
+    //string fileFormat = year[0] + "/" + year[0] + "-" + month[10] + ".json";
     //cout << fileFormat << "\n";
-    unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
+    
+    vector<int> totalBattlesByMonth;
+    vector<unordered_map<string_view, int>> freqMapByMonth;
+    //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
+
+    totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-11.json"));
+    freqMapByMonth.push_back(pokemonRawCount("2014/2014-11.json"));
+    totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-12.json"));
+    freqMapByMonth.push_back(pokemonRawCount("2014/2014-12.json"));
+    for(int i = 1; i < year.size() - 1; i++) {
+        for(int j = 0; j < month.size(); j++) {
+            string fileFormat = year[i] + "/" + year[i] + "-" + month[j] + ".json";
+            totalBattlesByMonth.push_back(loadBattleTotal(fileFormat));
+            freqMapByMonth.push_back(pokemonRawCount(fileFormat));
+        }
+    }
+    totalBattlesByMonth.push_back(loadBattleTotal("2025/2025-01.json"));
+    freqMapByMonth.push_back(pokemonRawCount("2025/2025-01.json"));
+    totalBattlesByMonth.push_back(loadBattleTotal("2025/2025-02.json"));
+    freqMapByMonth.push_back(pokemonRawCount("2025/2025-02.json"));
+    totalBattlesByMonth.push_back(loadBattleTotal("2025/2025-03.json"));
+    freqMapByMonth.push_back(pokemonRawCount("2025/2025-03.json"));
+    
     return 0;
 }
