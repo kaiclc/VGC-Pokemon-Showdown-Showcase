@@ -50,6 +50,7 @@ int main() {
     vector<unordered_map<string_view, int>> freqMapByMonth;
     //unordered_map<string_view, int> freqMap = pokemonRawCount("2014/2014-11.json");
 
+    cout << "parsing data..." << endl; 
     totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-11.json"));
     freqMapByMonth.push_back(pokemonRawCount("2014/2014-11.json"));
     totalBattlesByMonth.push_back(loadBattleTotal("2014/2014-12.json"));
@@ -67,6 +68,7 @@ int main() {
     freqMapByMonth.push_back(pokemonRawCount("2025/2025-02.json"));
     totalBattlesByMonth.push_back(loadBattleTotal("2025/2025-03.json"));
     freqMapByMonth.push_back(pokemonRawCount("2025/2025-03.json"));
+    cout << "done parsing!" << endl;
     
     return 0;
 }
