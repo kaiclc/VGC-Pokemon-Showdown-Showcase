@@ -1,4 +1,5 @@
 #include "PokemonSegTree.hpp"
+#include "PokemonFenwickTree.hpp"
 #include "simdjson.h"
 #include <iostream>
 #include <vector>
@@ -79,7 +80,6 @@ unordered_map<string, vector<int>> unionFrqMap(vector<unordered_map<string, int>
     return result;
 };
 
-
 int main() {
 
     //string fileFormat = year[0] + "/" + year[0] + "-" + month[10] + ".json";
@@ -92,7 +92,6 @@ int main() {
 
 
     parseAllFiles(totalBattlesByMonth, freqMapByMonth);
-
     const unordered_map<string, vector<int>> realCounts = unionFrqMap(freqMapByMonth);
 
 
