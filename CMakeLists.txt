@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(VGC_Pokemon_Showdown_Showcase
     main.cpp
-        PokemonSegTree.cpp
         SegmentTree.cpp
-        simdjson.cpp
-        simdjson.h)
+        PokemonSegTree.cpp
+        FenwickTree.cpp
+        PokemonFenwickTree.cpp
+        simdjson.cpp)
