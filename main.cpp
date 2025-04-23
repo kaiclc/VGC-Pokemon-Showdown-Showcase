@@ -149,13 +149,19 @@ int main() {
         auto endFenwick = chrono::high_resolution_clock::now();
 
         cout << "\nResults for " << pokemonName << ":" << endl;
-        cout << "Usage count: " << get<0>(segGroup) << endl;
-        cout << "Total Battles: " << get<1>(segGroup) << endl;
-        cout << "Usage Percentage: " << fixed << setprecision(2) << (100.0 * get<0>(segGroup) / (get<1>(segGroup))) << endl;;
-        
-        cout << "Performance" << endl;
-        cout << "Segment Tree: " << chrono::duration_cast<chrono::microseconds>(endSeg - startSeg).count() << "microseconds" << endl;
-        cout << "Fenwick Tree: " << chrono::duration_cast<chrono::microseconds>(endFenwick - startFenwick).count() << "microseconds" << endl << endl;
+        cout << "   Usage count: " << get<0>(segGroup) << endl;
+        cout << "   Total Battles: " << get<1>(segGroup) << endl;
+        cout << "   Usage Percentage: " << fixed << setprecision(2) << (100.0 * get<0>(segGroup) / (get<1>(segGroup))) << endl;
+        // test to ensure segment and fenwick arrive at same result
+        if (get<0>(segGroup) == get<0>(fenwickGroup) && get<1>(segGroup) == get<1>(fenwickGroup)) {
+            cout << "      Segment and Fenwick results match!" << endl;
+        } else {
+            cout << "      ERROR: Segment and Fenwick results do not match!" << endl;
+        }
+
+        cout << "Performance: " << endl;
+        cout << "   Segment Tree: " << chrono::duration_cast<chrono::microseconds>(endSeg - startSeg).count() << "microseconds" << endl;
+        cout << "   Fenwick Tree: " << chrono::duration_cast<chrono::microseconds>(endFenwick - startFenwick).count() << "microseconds" << endl << endl;
     }
     return 0;
 }
